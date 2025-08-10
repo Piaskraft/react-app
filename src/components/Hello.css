@@ -1,0 +1,9 @@
+.hello {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 12px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+.hello__title { margin: 0 0 6px; }
+.hello__subtitle { margin: 0; color:#666; font-size:.95rem; }

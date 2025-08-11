@@ -1,13 +1,14 @@
-import Hello from './components/Hello';
-import { people } from './data/people';
+import Hero from './components/Hero';
+import SearchForm from './components/SearchForm';
+import List from './components/List';
 
 const App = () => {
   return (
-    <main style={{ padding: 20, background: '#f7f7f7' }}>
-      {people.map(person => (
-        <Hello key={person.id} name={person.name} />
-      ))}
-    </main>
+    <div className="container" >
+      <Hero />
+      <SearchForm />
+      <List />
+    </div>
   );
 };
 

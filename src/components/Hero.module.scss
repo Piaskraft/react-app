@@ -1,0 +1,11 @@
+.hero {
+  background: #2f3440;      /* ciemne tło */
+  color: #fff;              /* jasny tekst */
+  border-radius: 12px;      /* możesz zostawić lub dać 0 jeśli ma być bez zaokrągleń */
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.title { margin-bottom: 6px; }
+.lead  { color: rgba(255,255,255,.85); }

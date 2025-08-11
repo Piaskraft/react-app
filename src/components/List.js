@@ -4,9 +4,9 @@ import Column from './Column/Column';
 import Card from './Card/Card';
 import ColumnForm from './ColumnForm/ColumnForm';
 import { columns as initialColumns } from '../data/columns';
-import { faBook, faFilm, faGamepad } from '@fortawesome/free-solid-svg-icons';
+ import { faBook, faFilm, faGamepad, faMusic } from '@fortawesome/free-solid-svg-icons';
 
-const iconMap = { book: faBook, film: faFilm, gamepad: faGamepad };
+const iconMap = { book: faBook, film: faFilm, gamepad: faGamepad, music: faMusic };
 
 const List = () => {
   const [columns, setColumns] = useState(initialColumns);

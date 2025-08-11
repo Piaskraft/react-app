@@ -1,0 +1,9 @@
+@import '../../styles/settings';
+
+.cardForm {
+  margin-top: $base-size;
+  display: flex;
+  gap: $base-size;
+  justify-content: center;
+  flex-wrap: wrap;
+}

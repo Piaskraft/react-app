@@ -1,5 +1,10 @@
 import styles from './List.module.scss';
-import { articles } from '../data/articles';
+import Column from './Column/Column';
+import Card from './Card/Card';
+import { columns } from '../data/columns';
+import { faBook, faFilm, faGamepad } from '@fortawesome/free-solid-svg-icons';
+
+const iconMap = { book: faBook, film: faFilm, gamepad: faGamepad };
 
 const List = () => {
   return (
@@ -10,16 +15,17 @@ const List = () => {
         </h2>
       </header>
 
-      <p className={styles.description}>
-        Interesting things I need to check
-      </p>
+      <p className={styles.description}>Interesting things I need to check</p>
 
       <section className={styles.columns}>
-        {articles.map(item => (
-          <article key={item.id}>
-            <h3>{item.title}</h3>
-            <p>{item.desc}</p>
-          </article>
+        {columns.map(col => (
+          <Column key={col.id} title={col.title} icon={iconMap[col.icon]}>
+            {col.cards.map(card => (
+              <Card key={card.id} title={card.title}>
+                {card.desc}
+              </Card>
+            ))}
+          </Column>
         ))}
       </section>
     </section>

@@ -1,0 +1,15 @@
+@import '../../styles/settings';
+
+.column {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: $radius;
+  padding: $base-size * 1.25;
+}
+
+.title { margin: 0 0 $base-size; }
+.body  { color: $color-light; }
+.icon {
+  margin-right: $base-size * .5;
+  opacity: .9;
+}

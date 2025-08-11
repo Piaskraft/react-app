@@ -1,0 +1,12 @@
+@import '../../styles/settings';
+
+.card {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: $radius;
+  padding: $base-size;
+  margin-bottom: $base-size;
+}
+
+.title { margin: 0 0 $base-size/2; }
+.desc  { color: $color-light; margin: 0; }

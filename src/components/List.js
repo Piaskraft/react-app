@@ -1,12 +1,24 @@
+import { useState } from 'react';
 import styles from './List.module.scss';
 import Column from './Column/Column';
 import Card from './Card/Card';
-import { columns } from '../data/columns';
+import ColumnForm from './ColumnForm/ColumnForm';
+import { columns as initialColumns } from '../data/columns';
 import { faBook, faFilm, faGamepad } from '@fortawesome/free-solid-svg-icons';
 
 const iconMap = { book: faBook, film: faFilm, gamepad: faGamepad };
 
 const List = () => {
+  const [columns, setColumns] = useState(initialColumns);
+
+  // funkcja przekazywana do ColumnForm
+  const addColumn = ({ title, icon }) => {
+    const iconKey = iconMap[icon] ? icon : 'book'; // walidacja: tylko znane ikony
+    const id = (crypto.randomUUID && crypto.randomUUID()) || String(Date.now());
+    const newCol = { id, title, icon: iconKey, cards: [] };
+    setColumns(prev => [...prev, newCol]);
+  };
+
   return (
     <section className={styles.list}>
       <header className={styles.header}>
@@ -28,6 +40,9 @@ const List = () => {
           </Column>
         ))}
       </section>
+
+      {/* Formularz dodawania nowej kolumny */}
+      <ColumnForm action={addColumn} />
     </section>
   );
 };

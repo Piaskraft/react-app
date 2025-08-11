@@ -1,0 +1,14 @@
+@import '../../styles/settings';
+
+.columnForm {
+  margin-top: $base-size * 2;
+  display: flex;
+  justify-content: center;
+  gap: $base-size;
+  flex-wrap: wrap;
+}
+
+.input {
+  min-width: 220px;
+  flex: 1;
+}

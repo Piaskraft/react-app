@@ -1,42 +1,31 @@
-import { useState } from 'react';
-import styles from './ColumnForm.module.scss';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addColumn } from '../../redux/columnsReducer';
+
 import TextInput from '../TextInput/TextInput';
 import Button from '../Button/Button';
-import PropTypes from 'prop-types';
+import styles from './ColumnForm.module.scss';
 
-const ColumnForm = ({ action }) => {
+export default function ColumnForm() {
   const [title, setTitle] = useState('');
-  const [icon, setIcon] = useState('');
+  const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  const onChange = (eOrValue) => {
+    setTitle(typeof eOrValue === 'string' ? eOrValue : eOrValue?.target?.value || '');
+  };
+
+  const onSubmit = (e) => {
     e.preventDefault();
-    if (!title.trim()) return;
-    action({ title: title.trim(), icon: icon.trim() || 'book' });
+    const t = title.trim();
+    if (!t) return;
+    dispatch(addColumn({ title: t })); // ikona domyślnie 'book'
     setTitle('');
-    setIcon('');
   };
 
   return (
-    <form className={styles.columnForm} onSubmit={handleSubmit}>
-      <TextInput
-        className={styles.input}
-        placeholder="Title"
-        value={title}
-        onChange={e => setTitle(e.target.value)}
-      />
-      <TextInput
-        className={styles.input}
-        placeholder="Icon (book / film / gamepad)"
-        value={icon}
-        onChange={e => setIcon(e.target.value)}
-      />
-      <Button type="submit">Add column</Button>
+    <form className={styles.columnForm} onSubmit={onSubmit}>
+      <TextInput placeholder="Nowa kolumna…" value={title} onChange={onChange} />
+      <Button>Dodaj kolumnę</Button>
     </form>
   );
-};
-
-ColumnForm.propTypes = {
-  action: PropTypes.func.isRequired,
-};
-
-export default ColumnForm;
+}

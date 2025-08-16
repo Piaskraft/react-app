@@ -1,25 +1,32 @@
-import styles from './Column.module.scss';
+import React from 'react';
+import styles from './Column.module.scss';            // zostaw swój import
+import Card from '../Card/Card';                      // zostaw ścieżkę jak u Ciebie
+import CardForm from '../CardForm/CardForm';          // j.w.
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Card from '../Card/Card';
-import CardForm from '../CardForm/CardForm';           // ⬅️ nowy import
+import { useSelector } from 'react-redux';
+import { getFilteredCardsForColumn } from '../../redux/selectors';
 
-const Column = ({ id, title, icon, cards = [], addCard }) => {   // ⬅️ dodany prop addCard
+const Column = ({ id, title, icon }) => {
+  const cards = useSelector(state => getFilteredCardsForColumn(state, id));
+
   return (
-    <section className={styles.column}>
-      <h3 className={styles.title}>
-        {icon && <FontAwesomeIcon icon={icon} className={styles.icon} />}
+    <article className={styles.column}>
+      <h2 className={styles.title}>
+        {icon && <span className={styles.icon}><FontAwesomeIcon icon={icon} /></span>}
         {title}
-      </h3>
+      </h2>
 
-      <div className={styles.body}>
+      <ul className={styles.cards}>
         {cards.map(card => (
-          <Card key={card.id} title={card.title} />
+          <Card key={card.id} title={card.title}>
+            {card.desc}
+          </Card>
         ))}
-      </div>
+      </ul>
 
-      {/* formularz dodawania karty do TEJ kolumny */}
-      <CardForm columnId={id} action={addCard} />
-    </section>
+      {/* Twój formularz dodawania kart – dostaje columnId */}
+      <CardForm columnId={id} />
+    </article>
   );
 };
 

@@ -1,25 +1,31 @@
-import { useState } from 'react';
-import styles from './CardForm.module.scss';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addCard } from '../../redux/cardsReducer';
+
 import TextInput from '../TextInput/TextInput';
 import Button from '../Button/Button';
+import styles from './CardForm.module.scss';
 
-const CardForm = ({ action, columnId }) => {
+export default function CardForm({ columnId }) {
   const [title, setTitle] = useState('');
+  const dispatch = useDispatch();
 
-  const handleSubmit = e => {
+  const onChange = (eOrValue) => {
+    setTitle(typeof eOrValue === 'string' ? eOrValue : eOrValue?.target?.value || '');
+  };
+
+  const onSubmit = (e) => {
     e.preventDefault();
     const t = title.trim();
     if (!t) return;
-    action({ title: t }, columnId); // wywołujemy akcję z rodzica
+    dispatch(addCard({ columnId, title: t }));
     setTitle('');
   };
 
   return (
-    <form className={styles.cardForm} onSubmit={handleSubmit}>
-      <TextInput placeholder="Card title" value={title} onChange={e => setTitle(e.target.value)} />
-      <Button type="submit">Add card</Button>
+    <form className={styles.cardForm} onSubmit={onSubmit}>
+      <TextInput placeholder="Nowa karta…" value={title} onChange={onChange} />
+      <Button>Dodaj kartę</Button>
     </form>
   );
-};
-
-export default CardForm;
+}

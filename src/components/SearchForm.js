@@ -1,23 +1,50 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getSearchString } from '../redux/selectors';
-import { setSearchString } from '../redux/searchStringReducer';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
-import TextInput from './TextInput/TextInput';           // ← stylowany input
-import styles from './SearchForm.module.scss';           // ← jeśli masz moduł SCSS
+import TextInput from './TextInput/TextInput';
+import Button from './Button/Button';
+import styles from './SearchForm.module.scss';
 
 export default function SearchForm() {
-  const value = useSelector(getSearchString);
+  const [query, setQuery] = useState('');
   const dispatch = useDispatch();
 
-  const onChange = (eOrValue) => {
-    const v = typeof eOrValue === 'string' ? eOrValue : eOrValue?.target?.value || '';
-    dispatch(setSearchString(v));
+  const onSubmit = (e) => {
+    e.preventDefault();
+    dispatch({ type: 'UPDATE_SEARCHSTRING', payload: query });
+    setQuery(''); // czyścimy input po kliknięciu lupy
   };
 
-  return (
-    <form className={styles.search} onSubmit={(e) => e.preventDefault()}>
-      <TextInput placeholder="Search…" value={value} onChange={onChange} />
+  const onChange = (eOrVal) =>
+    setQuery(typeof eOrVal === 'string' ? eOrVal : eOrVal?.target?.value || '');
+
+  const clearFilter = () => {
+    setQuery('');
+    dispatch({ type: 'UPDATE_SEARCHSTRING', payload: '' });
+  };
+
+  const onKeyDown = (e) => {
+    if (e.key === 'Escape') clearFilter();   // Esc = szybki reset
+  };
+
+  
+return (
+    <form className={styles.search} onSubmit={onSubmit}>
+      <TextInput
+        placeholder="Search…"
+        value={query}
+        onChange={onChange}
+        onKeyDown={onKeyDown}
+      />
+      <Button type="submit" aria-label="Szukaj">🔎</Button>
+      <Button
+        type="button"                 // ważne: nie wysyła submitu
+        variant="transparent"
+        onClick={clearFilter}
+        aria-label="Wyczyść filtr"
+      >
+        ✕
+      </Button>
     </form>
   );
 }

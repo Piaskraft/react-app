@@ -1,13 +1,10 @@
-const SET_SEARCH_STRING = 'app/search/SET_SEARCH_STRING';
+// src/redux/searchStringReducer.js
+const UPDATE_SEARCHSTRING = 'UPDATE_SEARCHSTRING';
 
-export const setSearchString = (payload) => ({ type: SET_SEARCH_STRING, payload });
-
-const initialState = '';
-
-export default function searchStringReducer(state = initialState, action = {}) {
+export default function searchStringReducer(state = '', action = {}) {
   switch (action.type) {
-    case SET_SEARCH_STRING:
-      return action.payload;
+    case UPDATE_SEARCHSTRING:
+      return (action.payload ?? '').toString();
     default:
       return state;
   }

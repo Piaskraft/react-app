@@ -9,7 +9,6 @@ const rootReducer = combineReducers({
   cards: cardsReducer,
 });
 
-// Redux DevTools (jeśli są w przeglądarce)
 const devtools =
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 

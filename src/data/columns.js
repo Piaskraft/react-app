@@ -4,8 +4,8 @@ export const columns = [
     title: 'Books',
     icon: 'book',
     cards: [
-      { id: 'b1', title: 'Clean Code', desc: 'Read selected chapters' },
-      { id: 'b2', title: 'Refactoring', desc: 'Skim Martin Fowler tips' },
+      { id: 'b1', title: 'This is Going to Hurt' },
+      { id: 'b2', title: 'Interpreter of Maladies' },
     ],
   },
   {
@@ -13,7 +13,8 @@ export const columns = [
     title: 'Movies',
     icon: 'film',
     cards: [
-      { id: 'm1', title: 'Classics', desc: 'Catch up with a few classics' },
+      { id: 'm1', title: 'Harry Potter' },
+      { id: 'm2', title: 'Star Wars' },
     ],
   },
   {
@@ -21,7 +22,8 @@ export const columns = [
     title: 'Games',
     icon: 'gamepad',
     cards: [
-      { id: 'g1', title: 'Indie', desc: 'Try a new indie title' },
+      { id: 'g1', title: 'The Witcher' },
+      { id: 'g2', title: 'Skyrim' },
     ],
   },
 ];

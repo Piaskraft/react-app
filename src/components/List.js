@@ -2,12 +2,16 @@ import styles from './List.module.scss';
 import Column from './Column/Column';
 import ColumnForm from './ColumnForm/ColumnForm';
 import { faBook, faFilm, faGamepad, faMusic } from '@fortawesome/free-solid-svg-icons';
+
+
+// REDUX
 import { useSelector } from 'react-redux';
 import { getAllColumns } from '../redux/selectors';
 
 const iconMap = { book: faBook, film: faFilm, gamepad: faGamepad, music: faMusic };
 
 const List = () => {
+  // ↓ kolumny pobieramy ze store
   const columns = useSelector(getAllColumns);
 
   return (
@@ -26,13 +30,14 @@ const List = () => {
             key={col.id}
             id={col.id}
             title={col.title}
-            icon={iconMap[col.icon] || iconMap.book}  // fallback jak brak ikony
+            icon={iconMap[col.icon] || iconMap.book}
           />
         ))}
       </section>
 
-      {/* UWAGA: ColumnForm już dispatchuje do Reduxa (bez propsów) */}
+      {/* ColumnForm już dispatchuje do Reduxa – bez propsów */}
       <ColumnForm />
+      {/* <TodosPanel /> */}
     </section>
   );
 };

@@ -1,4 +1,3 @@
-// src/redux/selectors.js
 export const getSearchString = (state) => state.searchString;
 export const getAllColumns = (state) => state.columns;
 

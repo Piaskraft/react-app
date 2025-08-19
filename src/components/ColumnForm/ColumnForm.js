@@ -1,41 +1,40 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addColumn } from '../../redux/columnsReducer';
-
 import TextInput from '../TextInput/TextInput';
 import Button from '../Button/Button';
 import styles from './ColumnForm.module.scss';
 
 export default function ColumnForm() {
   const [title, setTitle] = useState('');
-  const [icon, setIcon] = useState(''); // <= NOWE
+  const [icon, setIcon] = useState('');
   const dispatch = useDispatch();
 
-  const onSubmit = (e) => {
-    e.preventDefault();
+  const submit = () => {
     const t = title.trim();
-    const i = (icon || 'book').trim();  // domyślnie 'book', jak w Kodilli
+    const i = (icon || 'book').trim();
     if (!t) return;
-    dispatch(addColumn({ title: t, icon: i }));
+    // dokładnie jak w PDF 16.3:
+    dispatch({ type: 'ADD_COLUMN', newColumn: { title: t, icon: i } });
     setTitle('');
     setIcon('');
   };
 
+  const onSubmit = (e) => {
+    e.preventDefault();      // blokuj przeładowanie
+    submit();                // wyślij akcję
+  };
+
+  const onChangeTitle = (eOrVal) =>
+    setTitle(typeof eOrVal === 'string' ? eOrVal : eOrVal?.target?.value || '');
+  const onChangeIcon = (eOrVal) =>
+    setIcon(typeof eOrVal === 'string' ? eOrVal : eOrVal?.target?.value || '');
+
   return (
     <form className={styles.columnForm} onSubmit={onSubmit}>
-      {/* Title */}
-      <TextInput
-        placeholder="Title:"
-        value={title}
-        onChange={(e) => setTitle(typeof e === 'string' ? e : e?.target?.value || '')}
-      />
-      {/* Icon (book / film / gamepad / music) */}
-      <TextInput
-        placeholder="Icon:"
-        value={icon}
-        onChange={(e) => setIcon(typeof e === 'string' ? e : e?.target?.value || '')}
-      />
-      <Button>ADD COLUMN</Button>
+      <TextInput placeholder="Title:" value={title} onChange={onChangeTitle} />
+      <TextInput placeholder="Icon:" value={icon} onChange={onChangeIcon} />
+      {/* WAŻNE: klik też wywołuje submit — niezależnie od typu Buttona */}
+      <Button onClick={submit}>ADD COLUMN</Button>
     </form>
   );
 }

@@ -22,11 +22,11 @@ const nextId = (state) => {
 
 export default function columnsReducer(state = initialState, action = {}) {
   switch (action.type) {
-    case ADD_COLUMN: {
-      const title = (action.payload?.title || '').trim();
-      const icon = action.payload?.icon || 'book';
+       case 'ADD_COLUMN': {
+      const title = (action.newColumn?.title || '').trim();
+      const icon = (action.newColumn?.icon || 'book').trim();
       if (!title) return state;
-      const id = action.payload?.id ?? nextId(state);
+      const id = nextId(state);
       return [...state, { id, title, icon }];
     }
     default:

@@ -3,6 +3,9 @@ import { useDispatch } from 'react-redux';
 import TextInput from '../TextInput/TextInput';
 import Button from '../Button/Button';
 import styles from './ColumnForm.module.scss';
+import { addColumn } from '../../redux/store';
+
+
 
 export default function ColumnForm() {
   const [title, setTitle] = useState('');
@@ -10,14 +13,15 @@ export default function ColumnForm() {
   const dispatch = useDispatch();
 
   const submit = () => {
-    const t = title.trim();
-    const i = (icon || 'book').trim();
-    if (!t) return;
-    // dokładnie jak w PDF 16.3:
-    dispatch({ type: 'ADD_COLUMN', newColumn: { title: t, icon: i } });
-    setTitle('');
-    setIcon('');
-  };
+  const t = title.trim();
+  const i = (icon || 'book').trim();
+  if (!t) return;
+
+  dispatch(addColumn({ title: t, icon: i }));
+  setTitle('');
+  setIcon('');
+};
+
 
   const onSubmit = (e) => {
     e.preventDefault();      // blokuj przeładowanie

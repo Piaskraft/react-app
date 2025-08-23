@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import TextInput from '../TextInput/TextInput';
 import Button from '../Button/Button';
 import styles from './CardForm.module.scss';
+ import { addCard } from '../../redux/store';
+
 
 export default function CardForm({ columnId }) {
   const [title, setTitle] = useState('');
@@ -13,7 +15,7 @@ export default function CardForm({ columnId }) {
     e.preventDefault();                        // ← blokuje przeładowanie
     const t = title.trim();
     if (!t) return;
-    dispatch({ type: 'ADD_CARD', columnId, newCard: { title: t } });
+   dispatch(addCard({ columnId, title: t }));
     setTitle('');
   };
 
@@ -23,7 +25,8 @@ export default function CardForm({ columnId }) {
   return (
     <form className={styles.cardForm} onSubmit={onSubmit}>
       <TextInput placeholder="Nowa karta…" value={title} onChange={onChange} />
-      <Button type="submit">DODAJ KARTĘ</Button> {/* ← tylko submit, bez onClick */}
+    <Button type="submit">ADD COLUMN</Button>
+
     </form>
   );
 }

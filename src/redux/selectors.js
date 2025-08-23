@@ -1,11 +1,17 @@
-export const getSearchString = (state) => state.searchString;
+// src/redux/selectors.js
+
+// 1) wszystkie kolumny
 export const getAllColumns = (state) => state.columns;
 
-export const getCardsForColumn = (state, columnId) =>
-  state.cards.filter(c => String(c.columnId) === String(columnId));
-
+// 2) karty przefiltrowane po kolumnie + frazie wyszukiwania
 export const getFilteredCardsForColumn = (state, columnId) => {
-  const q = state.searchString.trim().toLowerCase();
-  const cards = getCardsForColumn(state, columnId);
-  return q ? cards.filter(c => c.title.toLowerCase().includes(q)) : cards;
+  const { cards, searchString } = state;
+
+  // mały, lokalny helper (żeby nie bawić się w importy utils)
+  const contains = (src, q) =>
+    String(src).toLowerCase().includes(String(q).toLowerCase());
+
+  return cards.filter(
+    (card) => card.columnId === columnId && contains(card.title, searchString)
+  );
 };

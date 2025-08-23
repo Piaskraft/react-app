@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import TextInput from './TextInput/TextInput';
 import Button from './Button/Button';
 import styles from './SearchForm.module.scss';
+import { updateSearchString } from '../redux/store';
 
 export default function SearchForm() {
   const [query, setQuery] = useState('');
@@ -11,7 +12,7 @@ export default function SearchForm() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch({ type: 'UPDATE_SEARCHSTRING', payload: query });
+   dispatch(updateSearchString(query));
     setQuery(''); // czyścimy input po kliknięciu lupy
   };
 
@@ -20,7 +21,8 @@ export default function SearchForm() {
 
   const clearFilter = () => {
     setQuery('');
-    dispatch({ type: 'UPDATE_SEARCHSTRING', payload: '' });
+    dispatch(updateSearchString(''));
+
   };
 
   const onKeyDown = (e) => {

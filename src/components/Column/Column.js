@@ -9,6 +9,7 @@ import { getFilteredCardsForColumn } from '../../redux/selectors';
 const Column = ({ id, title, icon }) => {
   const cards = useSelector(state => getFilteredCardsForColumn(state, id));
 
+
   return (
     <article className={styles.column}>
       <h2 className={styles.title}>

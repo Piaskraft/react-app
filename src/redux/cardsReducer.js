@@ -34,8 +34,11 @@ export default function cardsReducer(state = initialState, action = {}) {
     }
      // NOWE: wariant „kodillowy” – dispatch({ type: 'ADD_CARD', columnId, newCard: { title } })
        case 'ADD_CARD': {
-      const title = (action.newCard?.title || '').trim();
-      const columnId = action.columnId;
+  const { columnId, title: rawTitle } = action.payload || {};
+  const title = (rawTitle || '').trim();
+
+
+
       if (!title || !columnId) return state;
       const id = nextId(state);
       return [...state, { id, columnId, title }];

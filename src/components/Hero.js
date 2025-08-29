@@ -1,7 +1,11 @@
-const Hero = () => (
-  <header>
-    <h1>My first React App</h1>
-    <p>A simple to-do app, with lists, columns and card</p>
-  </header>
-);
-export default Hero;
+import styles from './Hero.module.scss';
+
+export default function Hero() {
+  return (
+    <section className={styles.hero}>
+      <h2 className={styles.title}>
+        THINGS TO DO <span>SOON</span>
+      </h2>
+    </section>
+  );
+}

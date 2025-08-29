@@ -13,3 +13,12 @@
   margin-right: $base-size * .5;
   opacity: .9;
 }
+.linkPlain {
+  color: inherit;
+  text-decoration: none;
+  display: block;       // cały tytuł klikalny
+  width: 100%;
+}
+.linkPlain:hover {
+  text-decoration: underline;
+}

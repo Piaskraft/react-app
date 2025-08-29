@@ -1,0 +1,6 @@
+/* Czyści biały „kontener” */
+.container--clear {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}

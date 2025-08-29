@@ -1,15 +1,43 @@
-import Hero from './components/Hero';
-import SearchForm from './components/SearchForm';
-import List from './components/List';
+import { Routes, Route, NavLink } from 'react-router-dom';
+import Home from './pages/Home';
+import ColumnPage from './pages/ColumnPage';
+import CardPage from './pages/CardPage';
+import Favorite from './pages/Favorite';
+import About from './pages/About';
+import NotFound from './pages/NotFound';
 
-const App = () => {
+const linkStyle = (isActive) => ({
+  color: '#fff',
+  textDecoration: 'none',
+  fontSize: '18px',
+  fontWeight: 700,
+  opacity: isActive ? 1 : 0.9,
+});
+
+
+export default function App() {
   return (
-    <div className="container" >
-      <Hero />
-      <SearchForm />
-      <List />
-    </div>
-  );
-};
+    <>
+      {/* GÓRNE MENU jak w zadaniu */}
+          <header  style={{ padding: '12px 0' }}>
+        <nav style={{ display: 'flex', gap: 18, justifyContent: 'flex-end' }}>
+          <NavLink to="/" end style={({ isActive }) => linkStyle(isActive)}>Home</NavLink>
+          <NavLink to="/favorite" style={({ isActive }) => linkStyle(isActive)}>Favorite</NavLink>
+          <NavLink to="/about" style={({ isActive }) => linkStyle(isActive)}>About</NavLink>
+        </nav>
+      </header>
 
-export default App;
+
+      {/* Widoki */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/favorite" element={<Favorite />} />
+        <Route path="/about" element={<About />} />
+
+        <Route path="/column/:id" element={<ColumnPage />} />
+        <Route path="/card/:id" element={<CardPage />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
+  );
+}

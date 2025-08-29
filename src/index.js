@@ -1,18 +1,23 @@
 // style
+import './styles/global.css';
+
 import './styles/normalize.scss';
 import './styles/global.scss';
 
-// react
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import App from './App';
-
-// redux
 import { Provider } from 'react-redux';
-import store from './redux/store';
+import { BrowserRouter } from 'react-router-dom';
 
-createRoot(document.getElementById('root')).render(
+import App from './App';
+import store from './redux/store'; // <- jeśli masz inną ścieżkę/nazwę, dostosuj
+
+const root = createRoot(document.getElementById('root'));
+
+root.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>
 );

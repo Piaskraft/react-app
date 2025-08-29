@@ -6,6 +6,10 @@ import Favorite from './pages/Favorite';
 import About from './pages/About';
 import NotFound from './pages/NotFound';
 
+
+
+
+
 const linkStyle = (isActive) => ({
   color: '#fff',
   textDecoration: 'none',

@@ -31,7 +31,8 @@ const Column = ({ id, title, icon }) => {
           <Card
             key={card.id}
             id={card.id}
-            title={card.title}>
+            title={card.title}
+            isFavorite={card.isFavorite}>
             {card.desc}
           </Card>
         ))}

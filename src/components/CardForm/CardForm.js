@@ -25,7 +25,7 @@ export default function CardForm({ columnId }) {
   return (
     <form className={styles.cardForm} onSubmit={onSubmit}>
       <TextInput placeholder="Nowa karta…" value={title} onChange={onChange} />
-    <Button type="submit">ADD COLUMN</Button>
+    <Button type="submit">ADD CARD</Button>
 
     </form>
   );

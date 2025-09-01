@@ -36,3 +36,7 @@ export const getColumnsByList = (state, listId) =>
 
 // Wszystkie listy
 export const getAllLists = (state) => state.lists;
+
+// Zwraca tylko ulubione karty
+export const getFavoriteCards = (state) =>
+  state.cards.filter(card => card.isFavorite);

@@ -18,3 +18,22 @@
   width: 100%;
 }
 .linkPlain:hover { text-decoration: underline; }
+
+.favBtn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  opacity: .75;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.favBtn:hover { opacity: 1; }
+
+.favActive {
+  /* np. lekko żółtawa gwiazdka — jeśli chcesz z kolorem */
+  color: #f7c948;
+}

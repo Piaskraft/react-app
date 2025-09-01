@@ -27,4 +27,12 @@ export const getfilteredCardsForColumn = selectCardsForColumn;
 // Wszystkie kolumny (do List.js)
 export const selectAllColumns = (state) => state.columns;
 export const getAllColumns = selectAllColumns; // alias pod Twoje importy
+// Lista po id
+export const getListById = (state, listId) =>
+  state.lists.find(list => String(list.id) === String(listId));
+// Kolumny dla danej listy (po listId)
+export const getColumnsByList = (state, listId) =>
+  state.columns.filter(col => String(col.listId) === String(listId));
 
+// Wszystkie listy
+export const getAllLists = (state) => state.lists;

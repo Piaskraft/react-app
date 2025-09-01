@@ -6,7 +6,7 @@ import Favorite from './pages/Favorite';
 import About from './pages/About';
 import NotFound from './pages/NotFound';
 
-
+import List from './components/List';
 
 
 
@@ -35,6 +35,7 @@ export default function App() {
       {/* Widoki */}
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/list/:listId" element={<List />} />
         <Route path="/favorite" element={<Favorite />} />
         <Route path="/about" element={<About />} />
 

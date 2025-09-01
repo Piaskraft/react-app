@@ -7,7 +7,7 @@ import { addColumn } from '../../redux/store';
 
 
 
-export default function ColumnForm() {
+export default function ColumnForm({ listId }) {
   const [title, setTitle] = useState('');
   const [icon, setIcon] = useState('');
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ export default function ColumnForm() {
   const i = (icon || 'book').trim();
   if (!t) return;
 
-  dispatch(addColumn({ title: t, icon: i }));
+dispatch(addColumn({ title: t, icon: i, listId }));
   setTitle('');
   setIcon('');
 };

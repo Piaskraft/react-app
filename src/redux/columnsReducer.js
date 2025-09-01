@@ -9,7 +9,17 @@ const initialState = initialColumnsData.map(c => ({
   id: c.id,
   title: c.title,
   icon: c.icon || 'book',
+  listId: '1', // ← wszystkie obecne kolumny przypisujemy do listy 1
 }));
+
+// Dodajemy testową kolumnę do listy 2
+initialState.push({
+  id: 'c4',
+  title: 'Songs',
+  icon: 'music',
+  listId: '2',
+});
+
 
 // generujemy kolejne id jako string (zgodnie z 14)
 const nextId = (state) => {
@@ -24,9 +34,10 @@ export default function columnsReducer(state = initialState, action = {}) {
   switch (action.type) {
        case 'ADD_COLUMN': {
       const title = (action.payload?.title || '').trim();    const icon  = (action.payload?.icon  || 'book').trim();
+      const listId = String(action.payload?.listId ?? '1');
       if (!title) return state;
       const id = nextId(state);
-      return [...state, { id, title, icon }];
+      return [...state, { id, title, icon, listId }];
     }
     default:
       return state;

@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons';
+import { faStar as faStarSolid, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faStar as faStarRegular } from '@fortawesome/free-regular-svg-icons';
 
-import { toggleCardFavorite } from '../../redux/cardsReducer';
+import { toggleCardFavorite, removeCard } from '../../redux/cardsReducer';
 import styles from './Card.module.scss';
 
 const Card = ({ id, title, children, isFavorite = false }) => {
@@ -18,10 +18,15 @@ const Card = ({ id, title, children, isFavorite = false }) => {
     dispatch(toggleCardFavorite(id));
   };
 
+  const onRemove = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    dispatch(removeCard(id));
+  };
+
   return (
-    // ⇣ Klucz: pozycjonujemy kontener karty
     <article className={styles.card} style={{ position: 'relative' }}>
-      {/* ⇣ Gwiazdka pozycjonowana absolutnie, bez zależności od SCSS */}
+      {/* Gwiazdka */}
       <button
         type="button"
         onClick={onToggleFav}
@@ -31,7 +36,7 @@ const Card = ({ id, title, children, isFavorite = false }) => {
         style={{
           position: 'absolute',
           top: 8,
-          right: 8,
+          right: 40,
           background: 'transparent',
           border: 0,
           cursor: 'pointer',
@@ -39,6 +44,25 @@ const Card = ({ id, title, children, isFavorite = false }) => {
         }}
       >
         <FontAwesomeIcon icon={isFavorite ? faStarSolid : faStarRegular} />
+      </button>
+
+      {/* Kosz */}
+      <button
+        type="button"
+        onClick={onRemove}
+        aria-label="Usuń kartę"
+        title="Usuń kartę"
+        style={{
+          position: 'absolute',
+          top: 8,
+          right: 8,
+          background: 'transparent',
+          border: 0,
+          cursor: 'pointer',
+          opacity: 0.7,
+        }}
+      >
+        <FontAwesomeIcon icon={faTrash} />
       </button>
 
       {title && (

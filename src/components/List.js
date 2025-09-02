@@ -8,7 +8,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams, Navigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { getListById, getColumnsByList } from '../redux/selectors';
-import { updateSearchString } from '../redux/store';
+import { updateSearchString } from '../redux/searchStringReducer';
+
 
 const iconMap = { book: faBook, film: faFilm, gamepad: faGamepad, music: faMusic };
 

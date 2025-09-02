@@ -1,6 +1,13 @@
 // src/redux/searchStringReducer.js
-const UPDATE_SEARCHSTRING = 'UPDATE_SEARCHSTRING';
+const UPDATE_SEARCHSTRING = 'app/search/UPDATE_SEARCHSTRING';
 
+// ACTION CREATOR (eksportujemy do komponentów)
+export const updateSearchString = (value) => ({
+  type: UPDATE_SEARCHSTRING,
+  payload: value,
+});
+
+// REDUCER
 export default function searchStringReducer(state = '', action = {}) {
   switch (action.type) {
     case UPDATE_SEARCHSTRING:

@@ -5,7 +5,8 @@ import { useState } from 'react';
 import { getAllLists } from '../../redux/selectors';
 import TextInput from '../TextInput/TextInput';
 import Button from '../Button/Button';
-import { addList } from '../../redux/store';
+import { addList } from '../../redux/listsReducer';
+
 
 export default function Lists() {
   const lists = useSelector(getAllLists);

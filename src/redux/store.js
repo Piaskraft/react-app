@@ -20,8 +20,3 @@ const store = createStore(rootReducer, devtools);
 export default store;
 
 
-// --- ACTION CREATORS ---
-export const addColumn = (payload) => ({ type: 'ADD_COLUMN', payload });
-export const addCard = (payload) => ({ type: 'ADD_CARD', payload });
-export const updateSearchString = (value) => ({ type: 'UPDATE_SEARCHSTRING', payload: value });
-export const addList = (payload) => ({ type: 'app/lists/ADD_LIST', payload });

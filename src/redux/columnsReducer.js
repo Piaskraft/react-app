@@ -31,8 +31,8 @@ const nextId = (state) => {
 };
 
 export default function columnsReducer(state = initialState, action = {}) {
-  switch (action.type) {
-       case 'ADD_COLUMN': {
+ switch (action.type) {
+  case ADD_COLUMN: {
       const title = (action.payload?.title || '').trim();    const icon  = (action.payload?.icon  || 'book').trim();
       const listId = String(action.payload?.listId ?? '1');
       if (!title) return state;

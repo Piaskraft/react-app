@@ -4,7 +4,8 @@ import { useDispatch } from 'react-redux';
 import TextInput from './TextInput/TextInput';
 import Button from './Button/Button';
 import styles from './SearchForm.module.scss';
-import { updateSearchString } from '../redux/store';
+import { updateSearchString } from '../redux/searchStringReducer';
+
 
 export default function SearchForm() {
   const [query, setQuery] = useState('');

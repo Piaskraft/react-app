@@ -4,7 +4,8 @@ import { useDispatch } from 'react-redux';
 import TextInput from '../TextInput/TextInput';
 import Button from '../Button/Button';
 import styles from './CardForm.module.scss';
- import { addCard } from '../../redux/store';
+ import { addCard } from '../../redux/cardsReducer';
+
 
 
 export default function CardForm({ columnId }) {

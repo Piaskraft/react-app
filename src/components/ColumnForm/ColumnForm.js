@@ -3,7 +3,8 @@ import { useDispatch } from 'react-redux';
 import TextInput from '../TextInput/TextInput';
 import Button from '../Button/Button';
 import styles from './ColumnForm.module.scss';
-import { addColumn } from '../../redux/store';
+import { addColumn } from '../../redux/columnsReducer';
+
 
 
 
